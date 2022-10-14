@@ -14,15 +14,11 @@ class Solution:
         if(len(arr)%2==0):
             n=int(len(arr)/2)
             res = arr[n:len(arr)]
-            for i in range(len(res)):
-                no = ListNode(res[i])
-                li.next = no
-                li=li.next
-            return head.next
         else:
             res = arr[int(len(arr)/2):len(arr)]
-            for i in range(len(res)):
-                no = ListNode(res[i])
-                li.next = no
-                li = li.next
-            return head.next
+        for i in range(len(res)):
+            no = ListNode(res[i])
+            li.next = no
+            li=li.next
+        return head.next
+        
