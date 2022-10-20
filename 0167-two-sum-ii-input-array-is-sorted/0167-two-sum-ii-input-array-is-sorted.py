@@ -1,11 +1,10 @@
 class Solution:
     def twoSum(self, numbers: List[int], target: int) -> List[int]:
-        mp = {}
-        for i,n in enumerate(numbers):
-            if target-n not in mp:
-                mp[n]=i
+        l,r=0,len(numbers)-1
+        while True:
+            if numbers[l]+numbers[r]==target:
+                return [l+1,r+1]
+            if numbers[l]+numbers[r]>target:
+                r-=1
             else:
-                ans = [i+1, mp[target-n]+1]
-                ans.sort()
-                return ans
-            
+                l+=1
