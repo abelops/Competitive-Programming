@@ -4,14 +4,16 @@ class Solution:
         
         for i, files in enumerate(paths):
             indFiles = files.split(" ")
-            parent = indFiles[0]
-    
+            loc = [indFiles[0]]
+            loc.append("/")
+            
             for index in range(1,len(indFiles)):
                 file = indFiles[index]
                 fileNames = file.split("(")
                 content = fileNames[1][:-1]
-                loc = parent + "/" + fileNames[0]
-                words[content].append(loc)
+                loc.append(fileNames[0])
+                words[content].append("".join(loc))
+                loc.pop()
         
         ans = []
         
