@@ -3,8 +3,16 @@ class Solution:
         """
         Do not return anything, modify nums1 in-place instead.
         """
-        for i in range(len(nums2)):
-            nums1.pop()
-        nums1.extend(nums2)
-        nums1.sort()
+        left = m - 1     # The end of the first list
+        right = n + m -1 # The end of the 0's in the first list
+        middle = n -1    # The end of the second list
         
+        while middle >=0:
+            if left >=0 and nums1[left] > nums2[middle]:
+                nums1[right] = nums1[left]
+                left -= 1
+                right -= 1
+            else:
+                nums1[right] = nums2[middle]
+                middle -= 1
+                right -= 1
