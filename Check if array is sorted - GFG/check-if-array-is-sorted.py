@@ -3,7 +3,7 @@
 class Solution:
     def arraySortedOrNot(self, arr, n):
         # code here
-        for i in range(1,len(arr)):
+        for i in range(1,n):
             if arr[i] < arr[i-1]:
                 return 0
         return 1
