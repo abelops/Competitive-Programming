@@ -1,14 +1,14 @@
 class Solution:
     def carPooling(self, trips: List[List[int]], capacity: int) -> bool:
-        pref = [0] * 1002
-        
-        for pep, st, end in trips:
-            pref[st+1] += pep
-            pref[end+1] -= pep
+        ans = [0] * 1002
+        for pas, start, end in trips:
+            ans[start + 1] += pas
+            ans[end + 1] -= pas
             
-        for i in range(1,1002):
-            pref[i] += pref[i-1]
-            if pref[i] > capacity:
+        for i in range(1,1000):
+            s = ans[i-1] + ans[i]
+            if s > capacity:
                 return False
-        
+            ans[i] = s
         return True
+    
