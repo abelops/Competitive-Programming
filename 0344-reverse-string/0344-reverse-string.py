@@ -9,5 +9,4 @@ class Solution:
         """
         Do not return anything, modify s in-place instead.
         """
-        print(len(s))
         return self.rev(0, len(s)-1, s) 
