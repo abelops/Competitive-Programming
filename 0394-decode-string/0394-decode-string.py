@@ -19,7 +19,6 @@ class Solution:
                         st.append(j)
             else:
                 st.append(i)
-            # print(st)
         ans = "".join(st)
         if ans.isnumeric():
             return ""
