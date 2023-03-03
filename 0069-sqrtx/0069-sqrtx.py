@@ -1,13 +1,16 @@
 class Solution:
     def mySqrt(self, x: int) -> int:
-        mp = {}
-        y = 0
-        while y * y < 2**32:
-            if y * y == x:
-                return y
-            if y * y > x:
-                return y-1
-            mp[y] = y*y
-            y+=1
+        l = 0
+        r = x
+        
+        while l <= r:
+            mid = l + (r-l) // 2
+            if mid * mid > x:
+                r = mid - 1
+            elif mid * mid < x:
+                l = mid + 1
+            else:
+                return mid
+        return l-1
 
         
