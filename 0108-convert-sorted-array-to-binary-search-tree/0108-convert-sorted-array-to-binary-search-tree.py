@@ -7,15 +7,9 @@
 class Solution:
     def sortedArrayToBST(self, nums: List[int]) -> Optional[TreeNode]:
         def getTree(l, r):
-            nonlocal nums
             if l > r:
                 return 
             mid = l + (r-l)//2
-            
-            left = getTree(l, mid-1)
-            right = getTree(mid+1, r)
-            node = TreeNode(nums[mid], left, right)
-            
-            return node
+            return TreeNode(nums[mid], getTree(l, mid-1), getTree(mid+1, r))
         ans = getTree(0, len(nums)-1)
         return ans
