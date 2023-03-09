@@ -15,6 +15,7 @@ class Solution:
                 return recur(node.left)
             else:
                 return recur(node.right)
+            
         # Itterative dfs
         def dfs(root):
             st = [root]
@@ -28,6 +29,22 @@ class Solution:
                     if cur.left:
                         st.append(cur.left)
             return None
-                
-        return dfs(root)
+        
+        # Itterative bfs
+        def bfs(root):
+            q = deque([root])
+            while q:
+                cur = q.pop()
+                if cur:
+                    if cur.val == val:
+                        return cur
+                    print(cur.val)
+                    if cur.left:
+                        q.appendleft(cur.left)
+                    if cur.right:
+                        q.appendleft(cur.right)
+            return None
+        
+        return bfs(root)
+        # return dfs(root)
         # return recur(root) 
