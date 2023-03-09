@@ -15,4 +15,19 @@ class Solution:
                 return recur(node.left)
             else:
                 return recur(node.right)
-        return recur(root) 
+        # Itterative dfs
+        def dfs(root):
+            st = [root]
+            while st:
+                cur = st.pop()
+                if cur:
+                    if cur.val == val:
+                        return cur
+                    if cur.right:
+                        st.append(cur.right)
+                    if cur.left:
+                        st.append(cur.left)
+            return None
+                
+        return dfs(root)
+        # return recur(root) 
