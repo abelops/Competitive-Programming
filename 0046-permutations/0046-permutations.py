@@ -5,7 +5,7 @@ class Solution:
         def perm(n,cur):
             if len(cur) == numLen:
                 if len(set(cur)) == numLen:
-                    ans.append(cur.copy())
+                    ans.append(cur[:])
                 return
             for i in range(numLen):
                 # if nums[i] != nums[n]:
