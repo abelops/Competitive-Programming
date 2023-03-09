@@ -3,7 +3,7 @@ class Solution:
         ans = []
         def comb(start, cur):
             if len(cur) == k:
-                ans.append(cur.copy())
+                ans.append(cur[:])
                 return
             for i in range(start, n+1):
                 cur.append(i)
