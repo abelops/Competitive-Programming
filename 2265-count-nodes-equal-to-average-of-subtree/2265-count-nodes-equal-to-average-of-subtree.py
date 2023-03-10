@@ -6,21 +6,20 @@
 #         self.right = right
 class Solution:
     def averageOfSubtree(self, root: Optional[TreeNode]) -> int:
-        ans = 0
         def trav(node):
-            nonlocal ans
             if not node:
-                return [0, 0] 
+                return [0, 0, 0] 
             left = trav(node.left)
             right = trav(node.right)
             
             tot = left[0] + right[0] + node.val
             count = left[1] + right[1] + 1
+            ans = left[2] + right[2]
             if tot // count == node.val:
                 ans += 1
-            return [tot, count]
+            return [tot, count, ans]
             
-        trav(root)
+        ans = trav(root)[2]
         return ans
                 
             
