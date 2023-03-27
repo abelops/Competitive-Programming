@@ -22,6 +22,8 @@ class Solution:
             for i in range(ind, totLen):
                 val = s[ind:i+1]
                 # print(val[0] != "0" and len(val) > 1)
+                if val[0] == "0" and len(val) > 1:
+                    break
                 if int(val) <= 255:
                     state.append(val)
                     backtrack(i+1, state)
