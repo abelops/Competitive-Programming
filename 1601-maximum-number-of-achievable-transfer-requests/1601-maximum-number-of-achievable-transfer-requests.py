@@ -20,6 +20,8 @@ class Solution:
         
         def comb(start, cur):
             nonlocal c
+            if c == len(requests):
+                return 
             if cur:
                 if helper(cur[:]):
                     c = max(c, len(cur))
