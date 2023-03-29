@@ -5,10 +5,11 @@ class Solution:
             if n == 0:
                 return [0]
             for i in range(n-1):
+                d = i//2+1
                 if i % 2 == 0:
-                    ans.append(ans[i//2+1])
+                    ans.append(ans[d])
                 else:
-                    ans.append(ans[i//2+1]+1)
+                    ans.append(ans[d]+1)
             return ans
                 
         def shiftNum():
