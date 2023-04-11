@@ -1,9 +1,9 @@
 class Solution:
     def maximalNetworkRank(self, n: int, roads: List[List[int]]) -> int:
-        mp = defaultdict(list)
+        mp = defaultdict(set)
         for i in roads:
-            mp[i[0]].append(i[1])
-            mp[i[1]].append(i[0])
+            mp[i[0]].add(i[1])
+            mp[i[1]].add(i[0])
         ans = 0
         for i in range(n):
             for j in range(i+1, n):
