@@ -4,35 +4,28 @@ class Solution:
         def inBound(i, j):
             return 0 <= i < len(grid2) and 0 <= j < len(grid2[0])
         
-        visited = set() 
+        visited = [[False for x in grid2[0]] for x in grid2]
         stat = True
-        def dfs(i, j, ans):
-            nonlocal stat
-            visited.add((i,j))
+        def dfs(i, j):
+            nonlocal stat, visited
+            visited[i][j] = True
             if grid1[i][j] != 1:
                 stat = False
-            ans.append((i,j))
             for r, c in directions:
                 di = i + r
                 dj = j + c
-                # print(di, dj)
-                if inBound(di, dj) and grid2[di][dj] == 1 and (di,dj) not in visited:
+                if inBound(di, dj) and grid2[di][dj] == 1 and not visited[di][dj]:
                     if grid1[di][dj] != 1:
                         stat = False
-                        # print("HEREE")
-                    dfs(di, dj, ans)
-            return ans if stat else []
+                    dfs(di, dj)
+            return 1 if stat else 0
         
         c = 0
-        # temp = dfs(3,2,[])
-        # print(temp)
         for i in range(len(grid2)):
             for j in range(len(grid2[0])):
-                if grid2[i][j] == 1 and (i,j) not in visited:
+                if grid2[i][j] == 1 and not visited[i][j]:
                     stat = True
-                    ans = dfs(i,j,[])
+                    ans = dfs(i,j)
                     if ans:
                         c+=1  
         return c
-            
-                    
