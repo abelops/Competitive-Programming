@@ -2,26 +2,31 @@ class Solution:
     def longestCycle(self, edges: List[int]) -> int:
         deg = defaultdict(int)
         leng = len(edges)
-        visited = set()
+        visited = [False] * leng
         for i in range(leng):
             deg[edges[i]]+=1
         ans = -1
         
-        def visit(x):
-            nonlocal ans
-            d = 0
-            mp = {}
-            while x not in visited:
-                mp[x] = d
-                d+=1
-                visited.add(x)
-                if edges[x] != -1:
-                    x = edges[x]
-                    if x in mp:
-                        ans = max(ans, d - mp[x])
-        
+        q = deque()
         for i in range(leng):
-            if i not in visited and deg[i] > 0 and edges[i] != -1:
-                visit(i)
-                
+            if deg[i] == 0:
+                q.append(i)
+        stat = True
+        while q:
+            poped = q.popleft()
+            visited[poped] = True
+            if edges[poped] != -1:
+                deg[edges[poped]]-=1
+            if not deg[edges[poped]]:
+                q.append(edges[poped])
+        for i in range(leng):
+            if not visited[i]:
+                c = 1
+                visited[i] = True
+                temp = edges[i]
+                while temp != i:
+                    c+=1
+                    temp = edges[temp]
+                    visited[temp] = True
+                ans = max(ans, c)
         return ans
