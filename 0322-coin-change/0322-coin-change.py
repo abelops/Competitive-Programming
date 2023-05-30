@@ -1,21 +1,20 @@
 class Solution:
     def coinChange(self, coins: List[int], amount: int) -> int:
-        memo = {}
-        if len(coins) == 1 and amount % coins[0] != 0:
-            return -1
-        def backtrack(cur):
-            if cur == 0:
-                return 0
-            if cur in memo:
-                return memo[cur]
+        arr = [-1] * (amount + 1) 
+        arr[0] = 0
+        for i in range(1,amount+1):
             minn = float("inf")
             for j in coins:
-                if cur - j >= 0:
-                    temp = backtrack(cur-j)
-                    minn = min(minn, temp)
-            memo[cur] = minn + 1
-            return minn + 1
-        ans = backtrack(amount)
-        return ans if ans != float("inf") else -1 
+                diff = i - j
+                if diff >= 0:
+                    if arr[diff] != -1:
+                        minn = min(minn, arr[diff]+1)
+            arr[i] = minn
+        # print(arr)
+        return arr[-1] if arr[-1] != float("inf") else -1
+                        
+                
+                
+            
             
             
