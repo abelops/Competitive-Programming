@@ -7,14 +7,9 @@ class Solution:
             for j in coins:
                 diff = i - j
                 if diff >= 0:
-                    if arr[diff] != -1:
-                        minn = min(minn, arr[diff]+1)
+                    # if arr[diff] != -1:
+                    minn = min(minn, arr[diff]+1)
             arr[i] = minn
-        # print(arr)
         return arr[-1] if arr[-1] != float("inf") else -1
                         
-                
-                
-            
-            
             
