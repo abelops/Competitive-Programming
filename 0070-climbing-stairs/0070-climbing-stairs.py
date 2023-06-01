@@ -1,13 +1,15 @@
 class Solution:
     def climbStairs(self, n: int) -> int:
-        memo = {}
-        def recur(n):
-            if n < 2:
+        def dp(cur, memo):
+            if cur == n:
                 return 1
-            if n in memo:
-                return memo[n]
-            memo[n-1] = recur(n-1)
-            memo[n-2] = recur(n-2)
-            return memo[n-1] + memo[n-2]
-        return recur(n)
-            
+            if cur in memo:
+                return memo[cur]
+            ans = dp(cur+1, memo)
+            if cur + 2 <= n:
+                ans += dp(cur+2, memo)
+            memo[cur] = ans
+            return ans
+        return dp(0, {})
+    
+    
