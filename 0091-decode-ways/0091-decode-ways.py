@@ -1,9 +1,6 @@
 class Solution:
     def numDecodings(self, s: str) -> int:
         tot = len(s)
-        mp = {}
-        for i in range(26):
-            mp[str(i+1)] = chr(97+i)
         
         def dp(cur,memo, ans):
             if cur == tot:
@@ -15,8 +12,7 @@ class Solution:
             if cur < tot and s[cur] != "0":
                 left = dp(cur+1, memo, ans)
                 temp+=left
-            
-            if cur + 1 < tot and s[cur: cur+2] in mp:
+            if cur + 1 < tot and s[cur]!="0" and int(s[cur: cur+2]) < 27:
                 right = dp(cur+2, memo, ans)
                 temp+=right
             memo[cur] = temp  
