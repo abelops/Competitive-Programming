@@ -12,7 +12,7 @@ class Solution:
             if cur < tot and s[cur] != "0":
                 left = dp(cur+1, memo, ans)
                 temp+=left
-            if cur + 1 < tot and s[cur]!="0" and int(s[cur: cur+2]) < 27:
+            if cur + 1 < tot and s[cur]!="0" and s[cur: cur+2] < "27":
                 right = dp(cur+2, memo, ans)
                 temp+=right
             memo[cur] = temp  
