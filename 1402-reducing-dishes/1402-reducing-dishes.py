@@ -7,8 +7,6 @@ class Solution:
         def dfs(tot, cur, m):
             if cur == leng:
                 return tot
-            if (cur, m) in memo:
-                return memo[(cur, m)]
             memo[(cur, m)] = dfs(tot + (sat[cur] * m), cur+1, m+1) 
             return memo[(cur, m)]
             
