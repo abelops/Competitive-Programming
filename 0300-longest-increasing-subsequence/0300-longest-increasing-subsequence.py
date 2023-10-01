@@ -1,21 +1,17 @@
 class Solution:
     def lengthOfLIS(self, nums: List[int]) -> int:
         l = len(nums)
-        memo = {}
-        def dfs(cur):
-            if cur in memo:
-                return memo[cur]
-            tot = 1
-            for i in range(cur+1, l):
-                if nums[i] > nums[cur]:
-                    tot = max(tot, dfs(i)+1)
-            memo[cur] = tot   
-            return tot
+        ans = [0] * l
         
-        ans = 0
-        for i in range(l):
-            ans = max(ans, dfs(i))
-        return ans
-                            
+        for i in range(l-1,-1,-1):
+            if i == l-1:
+                ans[i] = 1
+                continue
+            cur = 1
+            for j in range(i+1, l):
+                if nums[j] > nums[i]:
+                    cur = max(cur, ans[j]+1)
+            ans[i] += cur
+        return max(ans)
             
             
