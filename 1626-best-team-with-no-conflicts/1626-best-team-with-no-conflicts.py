@@ -11,5 +11,4 @@ class Solution:
                 elif ageScore[i][0] == ageScore[j][0]:
                     maxi = max(maxi, ans[j])
             ans[i] += maxi
-        print(ageScore)
         return max(ans)
