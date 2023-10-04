@@ -1,28 +1,22 @@
 class Solution:
     def checkIfPrerequisite(self, numCourses: int, prerequisites: List[List[int]], queries: List[List[int]]) -> List[bool]:
-        mp = defaultdict(list)
-        deg = defaultdict(int)
-        for prereq,course in prerequisites:
-            mp[prereq].append(course)
-            deg[course]+=1
-        q = deque()
-        for i in range(numCourses):
-            if not deg[i]:
-                q.append(i)
-        ans = defaultdict(set)
-        while q:
-            poped = q.popleft()
-            for i in mp[poped]:
-                deg[i]-=1
-                ans[i].add(poped)
-                ans[i].update(ans[poped])
-                if not deg[i]:
-                    q.append(i)
-        fin = []   
-        for prereq, course in queries:
-            if prereq in ans[course]:
-                fin.append(True)
+        graph = defaultdict(list)
+        mat = [[0 if i == j else float("inf") for i in range(numCourses+1)] for j in range(numCourses+1)]
+        for start, end in prerequisites:
+            mat[start][end] = 1
+
+        for k, dk in enumerate(mat):
+            for i, di in enumerate(mat):
+                for j in range(numCourses + 1):
+                    if di[k] + dk[j] < di[j]:
+                        di[j] = di[k] + dk[j]
+        ans = []
+        for start, end in queries:
+            d = mat[start][end]
+            if d == float("inf"):
+                ans.append(False)
             else:
-                fin.append(False)
-        return fin
+                ans.append(True)
+        return ans
+        
         
