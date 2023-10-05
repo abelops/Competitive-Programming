@@ -13,6 +13,6 @@ class Solution:
             dp(cur+stones[i], i+1)
             dp(cur, i+1)
         
-        for i in range(l):
-            dp(0, i)
+        # for i in range(l):
+        dp(0, 0)
         return abs(sum(stones) - (2*ans))
