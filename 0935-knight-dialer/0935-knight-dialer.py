@@ -7,17 +7,20 @@ class Solution:
         
         def inBound(x,y):
             return 0 <= x < 4 and 0 <= y < 3
-        @cache
+        memo = {}
         def dp(curX, curY, l):
             if l == n:
                 return 1
             
             sums = 0
+            if (curX, curY, l) in memo:
+                return memo[(curX, curY, l)]
             for px, py in d:
                 dx = curX + px
                 dy = curY + py
                 if inBound(dx, dy) and mat[dx][dy] != "*":
                     sums += dp(dx, dy, l+1)
+            memo[(curX, curY, l)] = sums
             return sums
         for i in range(3):
             for j in range(3):
