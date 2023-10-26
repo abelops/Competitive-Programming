@@ -1,18 +1,19 @@
 class Solution:
     def maxAlternatingSum(self, nums: List[int]) -> int:
+        ans = max(nums)
         l = len(nums)
-        mp = {}
+        @cache
         def dp(i, even):
             if i == l:
                 return 0
-            if (i,even) in mp:
-                return mp[(i,even)]
-            tot = 0
+            maxi = 0
+            left = dp(i+1, even)
+            maxi = max(maxi, left)
             if even:
-                tot+=nums[i]
+                right = dp(i+1, not even) + nums[i]
+                maxi = max(maxi, right)
             else:
-                tot-=nums[i]
-            mp[(i,even)] = max(tot+dp(i+1, not even), dp(i+1, even))
-            
-            return mp[(i,even)]
+                right = dp(i+1, not even) - nums[i]
+                maxi = max(maxi, right)
+            return maxi
         return dp(0, True)
