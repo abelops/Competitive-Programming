@@ -15,3 +15,5 @@ def solve():
         prog, math = numIII()
         print(min(min(prog, math), (prog+math)//4))
 solve()
+
+#some update here
