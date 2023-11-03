@@ -10,14 +10,11 @@ class Solution:
             if not node:
                 return None
             if node.val < low:
-                node.left = None
-                node = trim(node.right)
+                return trim(node.right)
             elif node.val > high:
-                node.right = None
-                node = trim(node.left)
-            else:
-                node.left = trim(node.left)
-                node.right = trim(node.right)
+                return trim(node.left)
+            node.left = trim(node.left)
+            node.right = trim(node.right)
             return node
         return trim(root)
             
